@@ -68,8 +68,13 @@ export const Face = ({rating, onRatingChange}) => {
               strokeWidth="2"
               strokeLinecap="round"
             />
-            <circle className="face__pupil -left" cx="1" cy="1" r="2" />
-            <circle className="face__pupil -right" cx="1" cy="1" r="2" />
+            <g
+              className="face__pupil-group"
+              data-glance={rating > 15 ? true : ''}
+            >
+              <circle className="face__pupil -left" cx="1" cy="1" r="2" />
+              <circle className="face__pupil -right" cx="1" cy="1" r="2" />
+            </g>
           </g>
         </svg>
 
