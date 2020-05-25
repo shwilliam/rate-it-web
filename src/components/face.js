@@ -1,4 +1,5 @@
 import React from 'react'
+import Slider from '@reach/slider'
 import {
   eyeLeftSmile,
   eyeLeftNeutral,
@@ -8,6 +9,8 @@ import {
   mouthFrown,
 } from '../shapes'
 import {preventDefault, getTweenedPath} from '../utils'
+
+import '@reach/slider/styles.css'
 
 export const Face = ({rating, onRatingChange}) => {
   const state = rating < 25 ? 'BAD' : rating > 75 ? 'GOOD' : 'NEUTRAL'
@@ -78,7 +81,7 @@ export const Face = ({rating, onRatingChange}) => {
           </g>
         </svg>
 
-        <input
+        <Slider
           id="rating-input-label"
           name="rating-input-label"
           className="rating-input"
@@ -86,7 +89,7 @@ export const Face = ({rating, onRatingChange}) => {
           min={0}
           max={100}
           value={rating}
-          onChange={e => onRatingChange(e.target.value)}
+          onChange={onRatingChange}
         />
       </div>
     </form>

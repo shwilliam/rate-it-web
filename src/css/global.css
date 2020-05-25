@@ -176,3 +176,17 @@ body,
 .rating-input {
   margin-top: 40px;
 }
+
+[data-reach-slider-track] {
+  background-color: #aaa;
+  height: 2px !important;
+}
+
+[data-reach-slider-track-highlight] {
+  background-color: transparent;
+}
+
+[data-reach-slider-handle] {
+  background-color: #000;
+  border: none;
+}
