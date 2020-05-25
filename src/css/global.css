@@ -203,12 +203,16 @@ body,
 }
 
 .rating-input {
+  position: relative;
   margin-top: 40px;
 }
 
 [data-reach-slider-track] {
+  position: relative;
   background-color: #aaa;
-  height: 2px !important;
+  height: 1.25px !important;
+  width: 70% !important;
+  margin: 0 auto;
 }
 
 [data-reach-slider-track-highlight] {
@@ -218,4 +222,23 @@ body,
 [data-reach-slider-handle] {
   background-color: #000;
   border: none;
+}
+
+.slider__handle {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 0;
+  border: 3px solid #fff;
+  border-radius: 15px;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.slider__pseudo-track {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
 }

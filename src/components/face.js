@@ -1,5 +1,12 @@
-import React from 'react'
-import Slider from '@reach/slider'
+import React, {useEffect} from 'react'
+import {
+  SliderInput,
+  SliderTrack,
+  SliderTrackHighlight,
+  SliderMarker,
+  SliderHandle,
+} from '@reach/slider'
+import {animated, useSpring} from 'react-spring'
 import {
   eyeLeftSmile,
   eyeLeftNeutral,
@@ -9,7 +16,6 @@ import {
   mouthFrown,
 } from '../shapes'
 import {preventDefault, getTweenedPath} from '../utils'
-
 import '@reach/slider/styles.css'
 
 export const Face = ({rating, onRatingChange}) => {
@@ -25,8 +31,13 @@ export const Face = ({rating, onRatingChange}) => {
     isNegative ? eyeLeftNeutral : eyeLeftSmile,
     isNegative ? rating / 50 : (rating - 50) / 50,
   )
-  const activeEmotion =
-    state === 'BAD' ? 'Hideous' : state === 'GOOD' ? 'Good' : 'Ok'
+  const [sliderHandleSpring, setSliderHandleSpring] = useSpring(() => ({
+    x: 0,
+  }))
+
+  useEffect(() => {
+    setSliderHandleSpring({x: rating})
+  }, [rating])
 
   return (
     <form className="face__container" onSubmit={preventDefault}>
@@ -106,16 +117,31 @@ export const Face = ({rating, onRatingChange}) => {
           </g>
         </svg>
 
-        <Slider
+        <SliderInput
           id="rating-input-label"
           name="rating-input-label"
           className="rating-input"
-          type="range"
           min={0}
-          max={100}
           value={rating}
+          max={100}
           onChange={onRatingChange}
-        />
+        >
+          <SliderTrack>
+            <animated.div
+              className="slider__pseudo-track"
+              style={{
+                transform: sliderHandleSpring.x.interpolate(
+                  x => `translateX(${x}%) translateY(-50%)`,
+                ),
+              }}
+            >
+              <span className="slider__handle" />
+            </animated.div>
+            <SliderTrackHighlight />
+            <SliderMarker value={rating} />
+            <SliderHandle />
+          </SliderTrack>
+        </SliderInput>
       </div>
     </form>
   )
