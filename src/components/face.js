@@ -34,7 +34,31 @@ export const Face = ({rating, onRatingChange}) => {
         <label className="face__title" htmlFor="rating-input-label">
           How was your ride?
         </label>
-        <p className="face__subtitle">{activeEmotion}</p>
+        <p className="face__subtitle">
+          <span
+            className="face__subtitle-text"
+            data-hidden={state !== 'BAD' ? 'LEFT' : ''}
+            aria-hidden={state !== 'BAD'}
+          >
+            Hideous
+          </span>
+          <span
+            className="face__subtitle-text"
+            data-hidden={
+              state === 'BAD' ? 'RIGHT' : state === 'GOOD' ? 'LEFT' : ''
+            }
+            aria-hidden={state !== 'NEUTRAL'}
+          >
+            Ok
+          </span>
+          <span
+            className="face__subtitle-text"
+            data-hidden={state !== 'GOOD' ? 'RIGHT' : ''}
+            aria-hidden={state !== 'GOOD'}
+          >
+            Good
+          </span>
+        </p>
       </div>
 
       <div className="face__main">
@@ -42,6 +66,7 @@ export const Face = ({rating, onRatingChange}) => {
           className="face"
           viewBox="0 0 90 90"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden
         >
           <g
             className="face__group"
