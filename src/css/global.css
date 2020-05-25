@@ -242,3 +242,13 @@ body,
   left: 0;
   width: 100%;
 }
+
+@media screen and (min-width: 1000px) {
+  .face__title {
+    width: auto;
+  }
+
+  .layout__close {
+    display: none;
+  }
+}
